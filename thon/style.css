@@ -13,13 +13,16 @@ body {
   position: relative;
 
 }
+#used{
+  color: #014923;
+}
 
 /* Navbar */
 
 
 .navbar {
   position:fixed;
-  
+  z-index: 100;
   width :100%;
 
 
@@ -36,6 +39,22 @@ body {
 h2{
   font-family:"Broadway", Helvetica, sans-serif ;
 }
+.yt-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #014923;
+  font-weight: bold;
+  text-decoration: none;
+
+}
+.yt-link a{
+  transition: color 0.3s ease;
+}
+.yt-link:hover {
+  text-decoration: underline;
+
+}
+
 
 .loading {
   position: relative;
@@ -411,6 +430,101 @@ p{
   padding: 0 10px 10px;
   text-align: center;
 }
+#about-us {
+  background-color: #f5f5f5;
+  padding: 40px 0;
+  text-align: center;
+}
+
+#about-us .container {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 20px;
+  
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(48, 7, 7, 0.2)),
+  url('/photo/istockphoto-1157103107-1024x1024.jpg') center/cover no-repeat;
+}
+
+#about-us h2 {
+  font-size: 2.5rem;
+  color: #2bda34;
+  margin-bottom: 20px;
+}
+
+#about-us p {
+  font-size: 1.2rem;
+  color: black;
+  line-height: 1.6;
+  font-weight: 300;
+  text-shadow: #2bda34;
+
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+#history-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;  /* Centered horizontally */
+  width: 80%;  /* Adjust this width if needed */
+  max-width: 500px;  /* Set a maximum width */
+  text-align: center; /* Center text inside the list */
+}
+.search-history{
+  text-align: center;
+  display:list-item;
+}
+
+/* Individual history item */
+.history-item {
+  background-color: #fff;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Align the text to the left inside the item */
+  padding-left: auto; /* Add some padding to the left */
+}
+
+/* Hover effect for history items */
+.history-item:hover {
+  background-color: #f1f1f1;
+  color: #ff9800;
+}
+
+/* Active history item (when clicked) */
+.history-item.active {
+  background-color: #ff9800;
+  color: white;
+}
+
+/* Add an icon or some styling to show interaction on click */
+.history-item:active {
+  background-color: #ff9800;
+}
+
+/* Styling for the search history title (optional) */
+#history-list-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center; /* Center the title */
+}
+
+@media screen and (max-width: 768px) {
+  #about-us h2 {
+    font-size: 2rem;
+  }
+
+  #about-us p {
+    font-size: 1rem;
+  }
+}
+
 
 /* Footer */
 footer { 
@@ -552,30 +666,6 @@ width: 100%;
   }
 
   .find-recipe-button {
-    width: 90%;
-  }
-}
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-links {
-    width: 100%;
-    text-align: right;
-  }
-
-  .search-section {
-    flex-direction: column;
-  }
-
-  .loading {
-    width: 100%;
-    height: auto;
-  }
-
-  .recipe-card {
     width: 90%;
   }
 }
