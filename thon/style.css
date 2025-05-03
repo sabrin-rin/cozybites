@@ -1,0 +1,557 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5; /* light beige */
+  color: #333;
+  min-height: 100vh;
+  position: relative;
+
+}
+
+/* Navbar */
+
+
+.navbar {
+  position:absolute;
+  
+  width :100%;
+
+
+  display: flex;
+  justify-content: space-between;
+  background-color: #014923; /* Updated color */
+  color: white;
+  padding: 15px;
+  align-items: center;
+}
+.nav-links{
+  float:right;
+}
+h2{
+  font-family:"Broadway", Helvetica, sans-serif ;
+}
+
+.loading {
+  position: relative;
+  width: 550px;
+  height: 550px;
+  overflow: hidden;
+  float: left;
+}
+
+.loading .cooking {
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  width: 260px;
+  height: 260px;
+  transform-origin: 15% 60%;
+  animation: throw 2.1s ease-in-out infinite;
+}
+
+@keyframes throw {
+
+  0%, 30%, 50%, 85%, 100% {
+      transform: rotate(0);
+  }
+
+  5% {
+      transform: rotate(-27deg);
+  }
+
+  55% {
+      transform: rotate(27deg);
+  }
+
+}
+
+.cooking .pan {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: 15% 60%;
+  animation: flip 2.1s ease-in-out infinite;
+}
+
+@keyframes flip {
+
+  0%, 100% {
+      transform: rotateY(0deg);
+  }
+
+  50% {
+      transform: rotateY(180deg);
+  }
+
+}
+
+.cooking .pan .inner {
+  position: absolute;
+  bottom: 20%;
+  right: 30%;
+  width: 150px;
+  height: 28px;
+  background: #014923;
+  border-radius: 0 4px 22px 22px;
+}
+
+.cooking .pan .handle {
+  position: absolute;
+  bottom: 18%;
+  right: 83%;
+  width: 132px;
+  height: 75px;
+  border-radius: 100%;
+  border-top: 10px solid #014923;
+  border-left: 15px solid transparent;
+  transform: rotate(20deg) scale(1.4, .9);
+}
+
+.cooking .food {
+  position: absolute;
+  top: 24%;
+  width: 90%;
+  height: 90%;
+  animation: jump 2.1s ease-in-out infinite;
+}
+
+@keyframes jump {
+
+  0% {
+      top: 24%;
+      transform: rotateX(85deg);
+  }
+
+  25% {
+      top: 10%;
+      transform: rotateX(0deg);
+  }
+
+  50% {
+      top: 30%;
+      transform: rotateX(85deg);
+  }
+
+  75% {
+      transform: rotateX(0deg);
+  }
+
+  100% {
+      transform: rotateX(85deg);
+  }
+
+}
+
+.cooking .food .cake {
+  position: absolute;
+  bottom: 26%;
+  right: 44%;
+  width: 120px;
+  height: 146px;
+  background: #014923;
+  border-radius: 50%;
+  transform-origin: -20% 0;
+  animation: fly 2.1s ease-in-out infinite;
+}
+
+@keyframes fly {
+
+  0%, 100% {
+      bottom: 26%;
+      transform: rotate(0deg);
+  }
+
+  10%, 80% {
+      bottom: 40%;
+  }
+
+  50% {
+      bottom: 26%;
+      transform: rotate(-190deg);
+  }
+
+}
+
+.loading .bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: #014923;
+  opacity: 0;
+}
+
+.loading .bubble:nth-child(1) {
+  left: 48%;
+  width: 25px;
+  height: 25px;
+  animation: bubble 2s ease-in-out infinite;
+}
+
+.loading .bubble:nth-child(2) {
+  left: 42%;
+  width: 20px;
+  height: 20px;
+  animation: bubble 2s ease-in-out infinite;
+}
+
+.loading .bubble:nth-child(3) {
+  left: 40%;
+  width: 15px;
+  height: 15px;
+  animation: bubble 1.5s ease-in-out infinite;
+}
+
+.loading .bubble:nth-child(4) {
+  left: 46%;
+  width: 12px;
+  height: 12px;
+  animation: bubble 1.8s ease-in-out infinite;
+}
+
+.loading .bubble:nth-child(5) {
+  left: 53%;
+  width: 11px;
+  height: 11px;
+  animation: bubble 1.6s ease-in-out infinite;
+}
+
+@keyframes bubble {
+
+  0% {
+      top: 55%;
+      scale: .1;
+      opacity: 0;
+  }
+
+  50% {
+      scale: 1.1;
+      opacity: 1;
+  }
+
+  100% {
+      top: 30%;
+      scale: .3;
+      opacity: 0;
+  }
+
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: 700;
+}
+.logo img{
+  width: 70px;
+}
+
+.nav-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff9800;
+}
+
+/* Container and Search Section */
+.container {
+  padding: 0px;
+  text-align: center;
+  
+  /* height: 100vh; */
+  background-attachment: fixed; /* Optional: make bg look cooler */
+
+}
+.backg{
+ 
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(48, 7, 7, 0.2)),
+  url('/photo/istockphoto-1182467837-612x612.webp') center/cover no-repeat;
+}
+b{
+  color:#014923;
+
+
+}
+
+
+.search-section {
+  display: flex; 
+  flex-direction: column;
+  gap: 30px;
+  /* margin-bottom: 20px; */
+  /* flex-wrap: wrap;  */
+}
+
+.left-side {
+  /* flex: 1; */
+  padding: 20px;
+  text-align: center;
+}
+
+/* .cooking-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  animation: cookingAnimation 3s infinite;
+} */
+
+/* @keyframes cookingAnimation {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+} */
+
+.cooking-note {
+  font-size: 19px;
+  margin-top: 150px;
+  font-weight: 400;
+  color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+p{
+  font-size: 19px;
+
+  font-weight: 400;
+  color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+
+}
+
+.ingredient-input {
+  padding: 10px;
+  margin: 5px 0;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.ingredient-input:focus {
+  outline: none;
+  border-color: #ff9800;
+}
+
+.find-recipe-button {
+  padding: 10px 20px;
+  background-color: #014923;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* margin-top: 15px; */
+  margin: auto;
+  width: 200px;
+  height: 50px;
+
+}
+
+.find-recipe-button:hover {
+  background-color: #555;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Recipe Cards */
+.recipes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.recipe-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.recipe-card h3 {
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+}
+
+.recipe-card p {
+  font-size: 14px;
+  padding: 0 10px 10px;
+  text-align: center;
+}
+
+/* Footer */
+footer { 
+
+  position:absolute; 
+  background-color: #014923; /* Updated color */
+  color: white;
+  padding: 20px 0;
+  text-align: center; 
+width: 100%;
+ height:auto;
+}
+
+.footer-section {
+  margin: 0 20px;
+}
+
+.footer-section h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+} 
+
+
+.footer-section p {
+  font-size: 16px;
+} 
+/* Footer */
+
+.footer-content {
+  margin-bottom: 20px;
+}
+
+.footer-content h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.footer-content p {
+  font-size: 16px;
+}
+
+.footer-nav {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.footer-nav a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #ff9800; /* Warm orange for hover */
+}
+
+.social-links {
+  margin-top: 10px;
+}
+
+.social-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+.social-links a:hover {
+  color: #ff9800; /* Same hover color for consistency */
+}
+
+@media (max-width: 768px) {
+  footer {
+    padding: 15px 0;
+  }
+
+  .footer-nav a {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .social-links a {
+    display: block;
+    margin: 5px 0;
+  }
+}
+
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .nav-links a {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+
+  .search-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-side {
+    margin-bottom: 20px;
+  }
+
+  .ingredients {
+    width: 100%;
+  }
+
+  .ingredient-input {
+    width: 80%;
+  }
+
+  .recipe-card {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .find-recipe-button {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ingredient-input {
+    width: 90%;
+  }
+
+  .find-recipe-button {
+    width: 90%;
+  }
+}
