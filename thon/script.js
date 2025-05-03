@@ -1,24 +1,47 @@
-// Casual comments for clarity
-
 // Get all important elements
 const searchButton = document.getElementById('searchButton');
 const recipesDiv = document.getElementById('recipes');
 const errorCode = document.getElementById('errorCode');
+const ingredientInputs = document.querySelectorAll('.ingredient-input');
 
-// When the search button is clicked
+// --- Autocomplete Setup ---
+let datalist = document.createElement('datalist');
+datalist.id = 'ingredient-autofill';
+document.body.appendChild(datalist);
+
+// Link all inputs to the same datalist
+ingredientInputs.forEach(input => {
+  input.setAttribute('list', 'ingredient-autofill');
+
+  input.addEventListener('input', async (e) => {
+    const query = e.target.value.trim();
+    if (query.length < 2) return;
+
+    try {
+      const response = await fetch(`https://api.spoonacular.com/food/ingredients/autocomplete?query=${encodeURIComponent(query)}&number=5&apiKey=554dba92ad784afcba27b3d5fd21a970`);
+      const data = await response.json();
+
+      datalist.innerHTML = ''; // Clear old options
+      data.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.name;
+        datalist.appendChild(option);
+      });
+    } catch (error) {
+      console.error("Autocomplete API error:", error);
+    }
+  });
+});
+
+// --- Search Button Logic ---
 searchButton.addEventListener('click', async () => {
-  // Clear previous results
   recipesDiv.innerHTML = '';
   errorCode.textContent = '';
 
-  // Grab the 5 ingredients
-  const ingredients = [
-    document.getElementById('ingredient1').value.trim(),
-    document.getElementById('ingredient2').value.trim(),
-    document.getElementById('ingredient3').value.trim(),
-    document.getElementById('ingredient4').value.trim(),
-    document.getElementById('ingredient5').value.trim()
-  ].filter(Boolean).join(',+'); // Spoonacular likes '+' between ingredients
+  const ingredients = Array.from(ingredientInputs)
+    .map(input => input.value.trim())
+    .filter(Boolean)
+    .join(',+'); // format for Spoonacular
 
   if (!ingredients) {
     errorCode.textContent = "Please enter at least one ingredient!";
@@ -26,24 +49,28 @@ searchButton.addEventListener('click', async () => {
   }
 
   try {
-    // Fetch data from Spoonacular
     const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&number=10&apiKey=554dba92ad784afcba27b3d5fd21a970`);
     const data = await response.json();
 
     if (data.length > 0) {
-      // Loop through recipes and create cards
       data.forEach(recipe => {
         const recipeCard = document.createElement('div');
         recipeCard.className = 'recipe-card';
-        
+
+        const youtubeSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(recipe.title + ' recipe')}`;
+
         recipeCard.innerHTML = `
           <img src="${recipe.image}" alt="${recipe.title}">
           <h3>${recipe.title}</h3>
-          <p>Used Ingredients: ${recipe.usedIngredientCount}</p>
+          <p id="used">Used Ingredients: ${recipe.usedIngredientCount}</p>
+          <a href="${youtubeSearchUrl}" target="_blank" class="yt-link">Watch on YouTube</a>
         `;
-
         recipesDiv.appendChild(recipeCard);
       });
+
+      saveSearchHistory(ingredients);
+      displaySearchHistory();
+
     } else {
       errorCode.textContent = "No recipes found with those ingredients.";
     }
@@ -51,4 +78,40 @@ searchButton.addEventListener('click', async () => {
     console.error(error);
     errorCode.textContent = "An error occurred. Please try again.";
   }
+});
+
+// --- History Logic ---
+function saveSearchHistory(ingredients) {
+  let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+  if (!history.includes(ingredients)) {
+    history.unshift(ingredients);
+    history = history.slice(0, 10); // keep 10 max
+    localStorage.setItem('searchHistory', JSON.stringify(history));
+  }
+}
+
+function displaySearchHistory() {
+  const history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+  const historyList = document.getElementById('history-list');
+  if (!historyList) return;
+
+  historyList.innerHTML = '';
+
+  history.forEach(entry => {
+    const li = document.createElement('li');
+    li.textContent = entry.replace(/\+\+/g, ', ');
+    li.classList.add('history-item');
+    li.addEventListener('click', () => {
+      const values = entry.split(',+');
+      ingredientInputs.forEach((input, index) => {
+        input.value = values[index] || '';
+      });
+    });
+    historyList.appendChild(li);
+  });
+}
+
+// Load history on page load
+document.addEventListener('DOMContentLoaded', () => {
+  displaySearchHistory();
 });
