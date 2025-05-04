@@ -1,74 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>cozybites</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="photo\logo.PNG" type="icon">
-  
-
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="photo/logo.PNG" type="image/png"/>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="logo"><img src="photo/logo.PNG" alt="logo of cozybites"> </div>
-    <div >        <h2>Cozy bites</h2>    </div>
-    <div class="nav-links">
+    <div class="logo">
+      <img src="photo/logo.PNG" alt="logo of cozybites" />
+    </div>
+    <div>
+      <h2>Cozy bites</h2>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
+    <div class="nav-links" id="nav-links">
       <a href="#home">Home</a>
-      <a href="#cooking-note">introduction</a>
+      <a href="#cooking-note">Introduction</a>
       <a href="mailto:looneem@gmail.com">Contact Us</a>
     </div>
   </nav>
 
   <!-- Main Content -->
-  <div class="container" id="home">
-    <div class="search-section">
+<div class="container">
+  <div class="search-section">
       <!-- Left Side with Cooking Animation and Note -->
-      <div class="backg"> <div class="left-side">
-        <div class="loading">
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="cooking">
+      <div class="backg">
+
+    <div class="left-side">
+          <div class="loading">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="cooking">
               <div class="pan">
-                  <span class="inner"></span>
-                  <span class="handle"></span>
+                <span class="inner"></span>
+                <span class="handle"></span>
               </div>
               <div class="food">
-                  <div class="cake"></div>
+                <div class="cake"></div>
               </div>
+            </div>
           </div>
+          <p class="cooking-note" id="cooking-note">
+            Cozy Bites — where every recipe feels like home. Dive into simple, hearty dishes that warm the soul and spark your love for cooking. Fresh ingredients, cozy vibes, and a sprinkle of creativity — welcome to your happy place!
+          </p>
+        </div>
       </div>
-        <p class="cooking-note">Cozy Bites — where every recipe feels like home.
-          Dive into simple, hearty dishes that warm the soul and spark your love for cooking.
-          Fresh ingredients, cozy vibes, and a sprinkle of creativity — welcome to your happy place! </p>
-      </div></div>
-      <p><b>What are we cooking today? Add your ingredients!</b></p>
-      
+
+      <p class="slide-in fade-out"><b>What are we cooking today? Add your ingredients!</b></p>
+
       <!-- Ingredient Inputs -->
-      <div class="ingredients">
-        <input type="text" id="ingredient1" placeholder="Ingredient 1" class="ingredient-input">
-        <input type="text" id="ingredient2" placeholder="Ingredient 2" class="ingredient-input">
-        <input type="text" id="ingredient3" placeholder="Ingredient 3" class="ingredient-input">
-        <input type="text" id="ingredient4" placeholder="Ingredient 4" class="ingredient-input">
-        <input type="text" id="ingredient5" placeholder="Ingredient 5" class="ingredient-input">
+      <div class="ingredients slide-in fade-out">
+        <input type="text" id="ingredient1" placeholder="Ingredient 1" class="ingredient-input"/>
+        <input type="text" id="ingredient2" placeholder="Ingredient 2" class="ingredient-input"/>
+        <input type="text" id="ingredient3" placeholder="Ingredient 3" class="ingredient-input"/>
+        <input type="text" id="ingredient4" placeholder="Ingredient 4" class="ingredient-input"/>
+        <input type="text" id="ingredient5" placeholder="Ingredient 5" class="ingredient-input"/>
       </div>
-      
+
       <!-- Find My Recipe Button -->
-      <button id="searchButton" class="find-recipe-button">Find My Recipe</button>
+      <button id="searchButton" class="find-recipe-button slide-in fade-out">Find My Recipe</button>
       <p id="errorCode" class="error"></p>
     </div>
 
     <!-- Recipe Results -->
     <div id="recipes" class="recipes-container"></div>
-    
-
   </div>
-  <section id="about-us" class="about-us">
+
+  <!-- About Us Section -->
+  <section id="about-us" class="about-us slide-in fade-out">
     <div class="container">
       <h2>About Us</h2>
       <p>
@@ -82,37 +89,34 @@
       </p>
     </div>
   </section>
-  <div id="history-container">
+
+  <!-- Search History -->
+  <div class="slide-in fade-out"id="history-container">
     <h2 id="history-list-title">Search History</h2>
     <ul id="history-list"></ul>
   </div>
-  
 
- 
+  <!-- Footer -->
   <footer>
-  
     <div class="footer-nav">
-      <a href="#">About Us</a> | 
-      <a href="mailto:looneem@gmail.com">Contact</a> | 
+      <a href="#">About Us</a> |
+      <a href="mailto:looneem@gmail.com">Contact</a> |
       <a href="#">Privacy Policy</a>
     </div>
     <div class="social-links">
-      <a href="#">Instagram</a>  
-      <a href="#">Facebook</a> 
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
       <a href="#">Twitter</a>
-    </div>  <div class="footer-content">
-     
+    </div>
+    <div class="footer-content">
       <p>© 2025 Cozy Bites. All rights reserved.</p>
-      <p>snuggle up, snack away!</p>
-      <h4> cozybites</h4>
-
-    </div> 
-
+      <p>Snuggle up, snack away!</p>
+      <h4>cozybites</h4>
+    </div>
   </footer>
-  
 
+  <!-- Script -->
   <script src="script.js"></script>
+  
 </body>
 </html>
-
-

@@ -16,6 +16,38 @@ body {
 #used{
   color: #014923;
 }
+/* Slide-in animation */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Initial state: hidden and off-screen */
+/* Base state */
+.slide-in {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.9s ease-out;
+}
+
+/* When sliding in (scrolling down) */
+.slide-in.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Optional: smooth fade-out when scrolling up */
+.slide-in.fade-out {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
 
 /* Navbar */
 
@@ -33,9 +65,116 @@ body {
   padding: 15px;
   align-items: center;
 }
-.nav-links{
-  float:right;
+/* Hide the nav links by default on small screens */
+#nav-links {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start; /* Align links to the left */
+  position: absolute;
+  top: 50px; /* Adjust if needed for spacing from the top */
+  right: 0;
+  left: 0;
+  background-color: #333; /* Background color to differentiate */
+  width: 0;
+  max-width: 100%;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
 }
+
+/* When the 'show' class is added, display the nav links */
+#nav-links.show {
+  display: flex;
+  width: 100%; /* Full width when shown on small screens */
+  padding-left: 20px; /* Space from the left edge */
+}
+
+/* Show the hamburger menu on small screens */
+#menuToggle {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* For large screens (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 20px 40px; /* Adjust padding for large screens */
+  }
+  
+  #nav-links {
+    display: flex !important;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    position: static;
+    background-color: transparent;
+    width: auto;
+    box-shadow: none;
+  }
+
+  /* Hide the hamburger menu */
+  #menuToggle {
+    display: none;
+  }
+}
+
+/* For medium screens (tablets between 768px and 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  #nav-links {
+    display: flex !important;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    position: static;
+    background-color: transparent;
+    width: auto;
+    box-shadow: none;
+  }
+
+  /* Hide the hamburger menu */
+  #menuToggle {
+    display: none;
+  }
+}
+
+/* For small screens (max-width: 767px) */
+@media (max-width: 767px) {
+  #nav-links {
+    display: none; /* Keep hidden by default */
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start; /* Align links to the left */
+    position: absolute;
+    top: 60px; 
+    left: 0;
+    right: 0;
+    /* background-color: transparent; */
+    width: 100%; /* Make it full width */
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+  }
+
+  /* Show the hamburger icon */
+  #menuToggle {
+    display: block;
+  }
+
+  /* When the 'show' class is added, show the nav links */
+  #nav-links.show {
+    display: flex;
+    width: 100%;
+    padding-left: 20px;
+  }
+}
+
 h2{
   font-family:"Broadway", Helvetica, sans-serif ;
 }
@@ -292,7 +431,7 @@ h2{
 .backg{
  
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(48, 7, 7, 0.2)),
-  url('/photo/istockphoto-1182467837-612x612.webp') center/cover no-repeat;
+  url('photo/istockphoto-1182467837-612x612.webp') center/cover no-repeat;
 }
 b{
   color:#014923;
@@ -373,7 +512,7 @@ p{
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.9s ease-out; /* <-- updated line */
   /* margin-top: 15px; */
   margin: auto;
   width: 200px;
@@ -442,7 +581,7 @@ p{
   border-radius: 20px;
   
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(48, 7, 7, 0.2)),
-  url('/photo/istockphoto-1157103107-1024x1024.jpg') center/cover no-repeat;
+  url('photo/istockphoto-1157103107-1024x1024.jpg') center/cover no-repeat;
 }
 
 #about-us h2 {

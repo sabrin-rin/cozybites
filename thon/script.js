@@ -1,3 +1,26 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('nav-links');
+
+  const handleResize = () => {
+    if (window.innerWidth < 768) {
+      menuToggle.style.display = 'block';
+    } else {
+      menuToggle.style.display = 'none';
+      navLinks.classList.remove('show');
+    }
+  };
+
+  handleResize(); // Initial check
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+
+  window.addEventListener('resize', handleResize);
+
+  displaySearchHistory(); // Moved here so it runs only once on load
+});
 // Get all important elements
 const searchButton = document.getElementById('searchButton');
 const recipesDiv = document.getElementById('recipes');
@@ -65,17 +88,17 @@ searchButton.addEventListener('click', async () => {
           <p id="used">Used Ingredients: ${recipe.usedIngredientCount}</p>
           <a href="${youtubeSearchUrl}" target="_blank" class="yt-link">Watch on YouTube</a>
         `;
+
         recipesDiv.appendChild(recipeCard);
       });
 
       saveSearchHistory(ingredients);
       displaySearchHistory();
-
     } else {
       errorCode.textContent = "No recipes found with those ingredients.";
     }
   } catch (error) {
-    console.error(error);
+    console.error("Recipe search error:", error);
     errorCode.textContent = "An error occurred. Please try again.";
   }
 });
@@ -85,7 +108,7 @@ function saveSearchHistory(ingredients) {
   let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
   if (!history.includes(ingredients)) {
     history.unshift(ingredients);
-    history = history.slice(0, 10); // keep 10 max
+    history = history.slice(0, 10); // Keep only 10 entries
     localStorage.setItem('searchHistory', JSON.stringify(history));
   }
 }
@@ -115,3 +138,28 @@ function displaySearchHistory() {
 document.addEventListener('DOMContentLoaded', () => {
   displaySearchHistory();
 });
+let lastScrollTop = 0;
+
+const slideElements = document.querySelectorAll('.slide-in');
+
+function handleScroll() {
+  const currentScroll = window.pageYOffset;
+
+  slideElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight - 100 && currentScroll > lastScrollTop) {
+      // Scrolling down
+      el.classList.add('visible');
+      el.classList.remove('fade-out');
+    } else if (rect.top > window.innerHeight && currentScroll < lastScrollTop) {
+      // Scrolling up
+      el.classList.remove('visible');
+      el.classList.add('fade-out');
+    }
+  });
+
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Avoid negative scroll
+}
+
+window.addEventListener('scroll', handleScroll);
