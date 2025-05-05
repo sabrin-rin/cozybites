@@ -92,14 +92,34 @@ body {
   padding-left: 20px; /* Space from the left edge */
 }
 
-/* Show the hamburger menu on small screens */
-#menuToggle {
+/*Show the hamburger menu on small screens */
+ #menuToggle {
   display: none;
   font-size: 30px;
   cursor: pointer;
   position: absolute;
   top: 20px;
   right: 20px;
+} 
+.menu-toggle:link,
+.menu-toggle:visited {
+  color: #edf7f1;
+  text-decoration: none;
+}
+.menu-toggle {
+  width: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 22px;
+}
+
+.menu-toggle .bar {
+  height: 4px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 2px;
 }
 
 /* For large screens (min-width: 1024px) */
@@ -120,7 +140,7 @@ body {
   }
 
   /* Hide the hamburger menu */
-  #menuToggle {
+  .menuToggle {
     display: none;
   }
 }
@@ -139,7 +159,7 @@ body {
   }
 
   /* Hide the hamburger menu */
-  #menuToggle {
+  .menuToggle {
     display: none;
   }
 }
@@ -163,7 +183,7 @@ body {
   }
 
   /* Show the hamburger icon */
-  #menuToggle {
+  .menuToggle {
     display: block;
   }
 
@@ -174,7 +194,6 @@ body {
     padding-left: 20px;
   }
 }
-
 h2{
   font-family:"Broadway", Helvetica, sans-serif ;
 }
